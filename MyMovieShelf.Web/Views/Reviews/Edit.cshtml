@@ -1,0 +1,22 @@
+﻿@model MyMovieShelf.Domain.DTO.ReviewDTO
+
+<h2 class="text-light">Edit Review</h2>
+
+<form asp-action="Edit" method="post" class="text-light">
+    <input type="hidden" asp-for="Id" />
+    <input type="hidden" asp-for="MovieId" />
+
+    <div class="form-group">
+        <label asp-for="Rating"></label>
+        <input asp-for="Rating" class="form-control" />
+        <span asp-validation-for="Rating" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Comment"></label>
+        <textarea asp-for="Comment" class="form-control"></textarea>
+        <span asp-validation-for="Comment" class="text-danger"></span>
+    </div>
+
+    <button type="submit" class="btn btn-primary mt-3">Save</button>
+</form>

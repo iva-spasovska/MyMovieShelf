@@ -1,0 +1,53 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+
+@model List<MyMovieShelf.Domain.DTO.MovieSearchResultDTO>
+
+@{
+    ViewData["Title"] = "Search Movies";
+}
+
+<div class="d-flex justify-content-between align-items-center mb-4 text-light">
+    <h1>Search Results</h1>
+    <form method="get" asp-action="Search" class="d-flex">
+        <input type="text" name="query" class="form-control me-2" placeholder="Search movies..." />
+        <button type="submit" class="btn btn-primary">Search</button>
+    </form>
+</div>
+
+@if (Model != null && Model.Any())
+{
+    <div class="container">
+    <div class="row">
+        @foreach (var result in Model)
+        {
+            <div class="col-2 mb-4">
+                <a asp-action="TmdbDetails" asp-route-tmdbId="@result.TmdbId" class="text-decoration-none text-dark">
+                    <div class="card h-100 shadow-sm movie-card">
+                        @if (!string.IsNullOrEmpty(result.PosterPath))
+                        {
+                            <img src="@result.PosterPath" alt="@result.Title" class="poster" />
+                        }
+                        else
+                        {
+                            <div class="poster-fallback">
+                                <span>@result.Title</span>
+                            </div>
+                        }
+
+                        <div class="card-body text-center">
+                            <h5 class="card-title">@result.Title</h5>
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+        }
+    </div>
+    </div>
+}
+else
+{
+    <p class="text-light">No results found.</p>
+}

@@ -1,0 +1,43 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+
+@model MyMovieShelf.Domain.DTO.MovieDetailsDTO
+
+@{
+    string posterSrc = null;
+    if (!string.IsNullOrWhiteSpace(Model.PosterPath))
+    {
+        posterSrc = Model.PosterPath.StartsWith("http", StringComparison.OrdinalIgnoreCase)
+            ? Model.PosterPath
+            : $"https://image.tmdb.org/t/p/w500{Model.PosterPath}";
+    }
+}
+
+<div class="row text-light pt-3 d-flex justify-content-evenly">
+    <div class="col-md-3">
+        @if (!string.IsNullOrEmpty(posterSrc))
+        {
+            <img src="@posterSrc" alt="@Model.Title Poster" class="img-fluid rounded shadow-sm" />
+        }
+        else
+        {
+            <span>No poster available</span>
+        }
+    </div>
+    <div class="col-md-8">
+        <h1>@Model.Title</h1>
+        <p>@Model.Overview</p>
+        <p>
+            <strong>Release:</strong>
+            @(Model.ReleaseDate.HasValue? Model.ReleaseDate.Value.ToString("dd.MM.yyyy") : "Unknown")
+        </p>
+        <p><strong>Genres:</strong> @string.Join(", ", Model.Genres?.Select(g => g.Name) ?? new string[0])</p>
+        
+
+        <form asp-action="AddFromTmdb" method="post">
+            <input type="hidden" name="tmdbId" value="@Model.TmdbId" />
+            <button type="submit" class="btn btn-primary">Add to My Shelf</button>
+        </form>
+    </div>
+</div>

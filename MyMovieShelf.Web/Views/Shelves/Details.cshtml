@@ -1,0 +1,99 @@
+﻿@model MyMovieShelf.Domain.DomainModels.Movie
+@using MyMovieShelf.Domain.DomainModels
+
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="text-light pt-3">
+    <div class="row mb-4 d-flex justify-content-evenly">
+        <div class="col-md-3">
+            @if (!string.IsNullOrEmpty(Model.PosterUrl))
+            {
+                <img src="@Model.PosterUrl" alt="@Model.Title Poster" class="img-fluid rounded shadow-sm" />
+            }
+            else
+            {
+                <span>No poster available</span>
+            }
+        </div>
+
+        <div class="col-md-8">
+            <h1>@Model.Title</h1>
+            <p><strong>Overview:</strong> @Model.Overview</p>
+            <p><strong>Release Date:</strong> @(Model.ReleaseDate?.ToString("dd.MM.yyyy") ?? "Unknown")</p>
+            <p><strong>Genres:</strong> @string.Join(", ", Model.MovieGenres.Select(mg => mg.Genre.Name))</p>
+
+            <p>
+                <strong>Actors:</strong>
+                @foreach (var ma in Model.MovieActors)
+                {
+                    <a asp-controller="Actors" asp-action="Details" asp-route-tmdbId="@ma.Actor.TmdbId"
+                       class="btn btn-outline-primary text-light text-decoration-none me-1 mb-1">
+                        @ma.Actor.FullName
+                    </a>
+                }
+            </p>
+
+            <div class="mt-3">
+                <form asp-controller="Shelves" asp-action="ToggleWatched" method="post" class="d-inline">
+                    <input type="hidden" name="movieId" value="@Model.Id" />
+                    <button type="submit" class="btn btn-light">
+                        @(ViewData["IsWatched"] as bool? == true ? "Unwatch" : "Mark Watched")
+                    </button>
+                </form>
+
+                <form asp-controller="Shelves" asp-action="Remove" method="post" class="d-inline"
+                      onsubmit="return confirm('Are you sure you want to remove this movie from your shelf?');">
+                    <input type="hidden" name="movieId" value="@Model.Id" />
+                    <button type="submit" class="btn btn-danger">Remove from Shelf</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="mx-4">
+    <hr />
+
+    <div class="d-flex align-items-center my-3 gap-2">
+        <h3 class="text-light mb-0">Reviews</h3>
+        <a asp-controller="Reviews" asp-action="Create" asp-route-movieId="@Model.Id"
+           class="btn btn-outline-light btn-sm rounded-circle ms-2" title="Add Review">
+            <i class="bi bi-plus"></i>
+        </a>
+    </div>
+
+
+
+
+        @if (ViewData["Reviews"] is List<Review> reviews && reviews.Any())
+        {
+            <ul class="list-group text-dark">
+                @foreach (var review in reviews)
+                {
+                    <li class="list-group-item bg-light text-dark border-bottom border-dark">
+                        <div>
+                            <strong>@review.User?.UserName</strong>
+                            rated it <strong>@review.Rating/10</strong>
+                            <span class="text-muted">(@review.CreatedAt.ToString("dd.MM.yyyy"))</span>
+                            <br />
+                            @review.Comment
+                        </div>
+                    </li>
+                }
+            </ul>
+        }
+        else
+        {
+            <p class="text-light">No reviews yet. Be the first to leave one!</p>
+        }
+
+
+    <div class="mt-3 d-flex justify-content-end">
+        <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+    </div>
+
+    </div>
+
+</div>

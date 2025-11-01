@@ -1,0 +1,88 @@
+﻿@model MyMovieShelf.Domain.DomainModels.Actor
+
+@{
+    ViewData["Title"] = "Actor Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var movies = ViewData["Movies"] as List<MyMovieShelf.Domain.DomainModels.Movie>;
+}
+
+<div class="text-light pt-3"> 
+
+
+<div class="row mb-4 d-flex justify-content-evenly">
+    <div class="col-md-3">
+        @if (!string.IsNullOrEmpty(Model.ProfileImageUrl))
+        {
+                <img src="@Model.ProfileImageUrl" alt="@Model.FullName" class="img-fluid rounded shadow-sm" />
+        }
+        else
+        {
+            <div class="img-thumbnail w-100 text-center">
+                <span>No Image</span>
+            </div>
+        }
+    </div>
+
+    <div class="col-md-8">
+        <div class="row">
+            <h1>@Model.FullName</h1>
+            @if (Model.BirthDate.HasValue)
+            {
+                <p><strong>Birth Date:</strong> @(Model.BirthDate?.ToString("dd.MM.yyyy") ?? "Unknown")</p>
+            }
+
+            @if (!string.IsNullOrWhiteSpace(Model.PlaceOfBirth))
+            {
+                <p><strong>Place Of Birth:</strong> @Model.PlaceOfBirth</p>
+            }
+
+            @if (!string.IsNullOrWhiteSpace(Model.Biography))
+            {
+                <p><strong>Biography:</strong> @Model.Biography</p>
+            }
+        </div>
+    </div>
+</div>
+
+<div class="mx-4">
+     
+<hr />
+
+@if (movies != null && movies.Any())
+{
+    <div class="row mt-3">
+        @foreach (var movie in movies)
+        {
+            <div class="col-2 mb-4">
+                <a asp-controller="Shelves" asp-action="Details" asp-route-id="@movie.Id" class="text-decoration-none text-dark">
+                    <div class="card h-100 shadow-sm movie-card">
+                        @if (!string.IsNullOrWhiteSpace(movie.PosterUrl))
+                        {
+                            <img src="@movie.PosterUrl" class="poster" alt="@movie.Title" />
+                        }
+                        else
+                        {
+                            <div class="poster-fallback">
+                                <span>@movie.Title</span>
+                            </div>
+                        }
+
+                        <div class="card-body text-center">
+                            <h5 class="card-title">@movie.Title</h5>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        }
+    </div>
+}
+else
+{
+    <p>This actor is not yet associated with any movies.</p>
+}
+
+<div class="d-flex justify-content-end">
+    <a asp-controller="Shelves" asp-action="Index" class="btn btn-secondary">Back to List</a>
+</div>
+</div>
+</div>

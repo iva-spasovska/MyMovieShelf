@@ -1,0 +1,16 @@
+C:\Users\ivasp\source\repos\MoviesApplication\MyMovieShelf.Repository\bin\Debug\net8.0\MyMovieShelf.Repository.deps.json
+C:\Users\ivasp\source\repos\MoviesApplication\MyMovieShelf.Repository\bin\Debug\net8.0\MyMovieShelf.Repository.dll
+C:\Users\ivasp\source\repos\MoviesApplication\MyMovieShelf.Repository\bin\Debug\net8.0\MyMovieShelf.Repository.pdb
+C:\Users\ivasp\source\repos\MoviesApplication\MyMovieShelf.Repository\bin\Debug\net8.0\MyMovieShelf.Domain.dll
+C:\Users\ivasp\source\repos\MoviesApplication\MyMovieShelf.Repository\bin\Debug\net8.0\MyMovieShelf.Domain.pdb
+C:\Users\ivasp\source\repos\MoviesApplication\MyMovieShelf.Repository\obj\Debug\net8.0\MyMovieShelf.Repository.csproj.AssemblyReference.cache
+C:\Users\ivasp\source\repos\MoviesApplication\MyMovieShelf.Repository\obj\Debug\net8.0\MyMovieShelf.Repository.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\ivasp\source\repos\MoviesApplication\MyMovieShelf.Repository\obj\Debug\net8.0\MyMovieShelf.Repository.AssemblyInfoInputs.cache
+C:\Users\ivasp\source\repos\MoviesApplication\MyMovieShelf.Repository\obj\Debug\net8.0\MyMovieShelf.Repository.AssemblyInfo.cs
+C:\Users\ivasp\source\repos\MoviesApplication\MyMovieShelf.Repository\obj\Debug\net8.0\MyMovieShelf.Repository.csproj.CoreCompileInputs.cache
+C:\Users\ivasp\source\repos\MoviesApplication\MyMovieShelf.Repository\obj\Debug\net8.0\MyMovieShelf.Repository.sourcelink.json
+C:\Users\ivasp\source\repos\MoviesApplication\MyMovieShelf.Repository\obj\Debug\net8.0\MyMovieS.2C6332E3.Up2Date
+C:\Users\ivasp\source\repos\MoviesApplication\MyMovieShelf.Repository\obj\Debug\net8.0\MyMovieShelf.Repository.dll
+C:\Users\ivasp\source\repos\MoviesApplication\MyMovieShelf.Repository\obj\Debug\net8.0\refint\MyMovieShelf.Repository.dll
+C:\Users\ivasp\source\repos\MoviesApplication\MyMovieShelf.Repository\obj\Debug\net8.0\MyMovieShelf.Repository.pdb
+C:\Users\ivasp\source\repos\MoviesApplication\MyMovieShelf.Repository\obj\Debug\net8.0\ref\MyMovieShelf.Repository.dll
